@@ -14,9 +14,14 @@
     </div>
     <div class="main__right">
     <ul class="main__right_ul">
-    <div v-for="item in items" :key="item"><InventoryItems /></div>
+    <div v-for="(item,index) in items"
+    :key="index"
+    ><InventoryItems
+     :itemCounter = item.itemCounter
+     :itemImg = item.itemImg   
+     /></div>
     </ul>
-    <div class="toggle"><InventoryToggle /></div>
+    <!-- <div class="toggle"><InventoryToggle /></div> -->
     <div class="main__down"><img class="main__down__description" src="@/assets/Skeleton.png"></div>
     </div>
 </div>
@@ -32,31 +37,31 @@ export default {
 },
     data() {
     return {
-        items: [{itemCounter:2,itemImg:"@/assets/Rectangle9.png"},
-        {itemCounter:4,itemImg:"@/assets/Rectangle9.png"},
-        {itemCounter:4,itemImg:"@/assets/Rectangle9.png"},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},
-        {itemCounter:null,itemImg:""},]
+        items: [{itemCounter:2, itemImg:"@/srs/assets/logo.png"},
+        {itemCounter:4,itemImg:"@/assets/Rectangle8.png"},
+        {itemCounter:4,itemImg:"@/assets/Rectangle8.png"},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},
+        {itemCounter:null,itemImg:" "},]
     }
     
 }}

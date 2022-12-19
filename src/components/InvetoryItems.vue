@@ -2,19 +2,20 @@
     <div class="item">
     <div class="item__inventory" v-on:click="isVisble = !isVisble">
     <div class="item__inventory_counter">{{ itemCounter }}</div>
-    <img class="item__inventory_Img"/>
+    <img class="item__inventory_Img"
+    :src="itemImg"
+     />
     </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: {
-    itemObject:Object,
-    itemImg:String,
-    itemCounter:String
-},
+    name:'ItemInventory',
+    props:['itemCounter','itemImg']
+   
 }
+
 
     
 </script>
