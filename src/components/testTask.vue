@@ -17,27 +17,32 @@
     <div v-for="(item,index) in items"
     :key="index"
     ><InventoryItems
+     v-on:click="visible = !visible"
      :itemCounter = item.itemCounter
      :itemImg = item.itemImg
      /></div>
     </ul>
-    <!-- <div class="toggle"><InventoryToggle /></div> -->
     <div class="main__down"><img class="main__down__description" src="@/assets/Skeleton.png"><img class="main__down__close" src="@/assets/Vector.png"> </div>
     </div>
+    <div class="main__menu"
+    v-show="visible"
+     ><img v-on:click="visible=!visible" class="main__menu__close" src="@/assets/Vector.png"><MenuDropdown
+      /></div>
 </div>
 </template>
 
 
 <script>
 import InventoryItems from '@/components/InvetoryItems.vue'
+import MenuDropdown from '@/components/MenuDropdown.vue'
 export default { 
     components: {
     InventoryItems,
-    
+    MenuDropdown,
 },
     data() {
     return {
-        items: [{itemCounter:4, itemImg:"@/assets/Skeleton.png"},
+        items: [{itemCounter:4, itemImg:"@/assets/ItemImage"},
         {itemCounter:2,itemImg:"@/assets/Rectangle8.png"},
         {itemCounter:5,itemImg:"@/assets/Rectangle8.png"},
         {itemCounter:null,itemImg:" "},
@@ -61,8 +66,10 @@ export default {
         {itemCounter:null,itemImg:" "},
         {itemCounter:null,itemImg:" "},
         {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},]
+        {itemCounter:null,itemImg:" "},],
+        visible:false,
     }
+    
     
 }}
 </script>
@@ -72,7 +79,8 @@ export default {
     height: 660px;
     display: flex;
     background-color: black;
-    padding: 0 5px
+    padding: 0 5px;
+    position: relative;
 }
 .main__left {
     border-radius:12px ;
@@ -128,8 +136,6 @@ export default {
     padding-top:24px ;
 }
 .main__right {
-    width: 540px;
-    height: 500px;
     margin-left: 12px;
     position: relative;
     margin-top: 32px;
@@ -146,6 +152,8 @@ export default {
     flex-wrap: wrap;
     margin-top: 0;
     margin-bottom: 0;
+    width: 525px !important;
+    height: 500px !important;
 }
 .main__down {
     background-color:#262626;
@@ -172,5 +180,20 @@ export default {
     bottom: 25%;
     cursor: pointer;
 }
-
+.main__menu {
+    width: 250px;
+    height: 500px;
+    right: 36px;
+    position: absolute;
+    background-color:rgba(38, 38, 38, 0.5);
+    margin-top: 32px;
+    border: 1px solid #4D4D4D;
+    backdrop-filter: blur(8px)
+}
+.main__menu__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    cursor: pointer;
+}
 </style>

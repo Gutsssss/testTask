@@ -4,6 +4,7 @@
 
 <script>
 import TestTask from '@/components/testTask.vue';
+
 export default {
   name: 'App',
   components: {

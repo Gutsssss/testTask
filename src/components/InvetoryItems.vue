@@ -17,12 +17,6 @@ export default {
     
    
 }
-
-    
-    
-
-
-    
 </script>
 <style>
 .item__inventory_counter {
@@ -33,9 +27,10 @@ export default {
     width: 16px;
     height: 16px;
     border:1px solid rgba(77, 77, 77, 1) ;
+    border-radius: 6px 0 0 0 ;
 }
 .item__inventory {
-    width: 105px;
+    width: 103px;
     height: 100px;
     border: 1px solid #4D4D4D;
     position: relative;
