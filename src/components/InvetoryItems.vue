@@ -1,7 +1,8 @@
 <template>
     <div class="item">
-    <div class="item__inventory" v-on:click="isVisble = !isVisble">
-    <div class="item__inventory_counter">{{ itemCounter }}</div>
+    <div class="item__inventory">
+    <div class="item__inventory_counter">{{ itemCounter }}
+    </div>
     <img class="item__inventory_Img"
     :src="itemImg"
      />
@@ -12,9 +13,13 @@
 <script>
 export default {
     name:'ItemInventory',
-    props:['itemCounter','itemImg']
+    props:['itemCounter','itemImg',],
+    
    
 }
+
+    
+    
 
 
     
@@ -22,9 +27,12 @@ export default {
 <style>
 .item__inventory_counter {
     position: absolute;
-    color: black;
-    bottom: 2px;
-    right: 2px;
+    color: rgba(77, 77, 77, 1);
+    bottom: 0px;
+    right: 0px;
+    width: 16px;
+    height: 16px;
+    border:1px solid rgba(77, 77, 77, 1) ;
 }
 .item__inventory {
     width: 105px;
@@ -39,8 +47,6 @@ export default {
     background-color: #2F2F2F;
 }
 .item__inventory_Img {
-    width:54px ;
-    height: 54px;
     left: 27px;
     position: absolute;
     top: 27px;
