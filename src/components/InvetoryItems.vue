@@ -4,7 +4,7 @@
     <div class="item__inventory_counter">{{ itemCounter }}
     </div>
     <img class="item__inventory_Img"
-    :src="itemImg"
+    :src="require(itemImg)"
      />
     </div>
     </div>

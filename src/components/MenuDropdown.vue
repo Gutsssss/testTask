@@ -1,7 +1,7 @@
 <template>
     <div class="item">
         <img class="item__inventory_picture"
-        :src =  menuImg
+        :src="itemImg"
      />
      <div>
     <div class="item__inventory__description">
@@ -19,10 +19,12 @@
 </template>
 
 <script>
+import props from '@/components/InvetoryItems.vue'
 export default {
     name:'MenuDropdown',
-    props:['menuImg'],
-    deleteItem:String
+    props:['itemImg'],
+    components:
+    props
 }
 </script>
 

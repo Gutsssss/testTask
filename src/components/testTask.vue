@@ -18,16 +18,17 @@
     :key="index"
     ><InventoryItems
      v-on:click="visible = !visible"
-     :itemCounter = item.itemCounter
-     :itemImg = item.itemImg
+     :itemCounter = "item.itemCounter"
+     :itemImg = "item.itemImg"
      /></div>
     </ul>
     <div class="main__down"><img class="main__down__description" src="@/assets/Skeleton.png"><img class="main__down__close" src="@/assets/Vector.png"> </div>
     </div>
     <div class="main__menu"
     v-show="visible"
-     ><img v-on:click="visible=!visible" class="main__menu__close" src="@/assets/Vector.png"><MenuDropdown
-      /></div>
+     ><img v-on:click="visible=!visible" class="main__menu__close" src="@/assets/Vector.png"
+     ><MenuDropdown
+     /></div>
 </div>
 </template>
 
@@ -42,9 +43,9 @@ export default {
 },
     data() {
     return {
-        items: [{itemCounter:4, itemImg:"@/assets/ItemImage"},
-        {itemCounter:2,itemImg:"@/assets/Rectangle8.png"},
-        {itemCounter:5,itemImg:"@/assets/Rectangle8.png"},
+        items: [{itemCounter:4, itemImg:"@/assets/ItemImage.png"},
+        {itemCounter:2,itemImg:"@/assets/ItemImage.png"},
+        {itemCounter:5,itemImg:"@/assets/ItemImage.png"},
         {itemCounter:null,itemImg:" "},
         {itemCounter:null,itemImg:" "},
         {itemCounter:null,itemImg:" "},
