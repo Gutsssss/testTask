@@ -14,19 +14,48 @@
     </div>
     <div class="main__right">
     <ul class="main__right_ul">
-    <div v-for="(item,index) in items"
+    <!-- <div v-for="(item,index) in items"
     :key="index"
-    ><InventoryItems
-     v-on:click="visible = !visible"
-     :itemCounter = "item.itemCounter"
-     :itemImg = "item.itemImg"
-     /></div>
+    > -->
+    <draggable
+          v-for="(item, index) in getRowsAndColumns"
+          :key="index"
+          :group="'people' + index"
+          :list="item"
+          ghost-class="ghost"
+          @start="drag=true"
+          @end="drag=false"
+          item-key="index"
+        >
+          <template #item="{ element }">
+            <div class="iteminventory" v-on:click="visible = !visible">
+                <div class="iteminventory_counter">{{ element[index].itemCounter }}</div>
+                <img
+                class="iteminventory_Img"
+                :src="require(`@/${element[index].itemImg}`)"
+                alt="123"
+              />
+                <!-- <img
+                class="iteminventory_Img"
+                :src="require(`@/${element[index].itemImg}`)"
+                alt="123"
+              />
+              <div class="iteminventory_counter">{{ element.itemCounter }}</div>
+                <img
+                class="iteminventory_Img"
+                :src="require(`@/${element[index].itemImg}`)"
+                alt="123"
+              /> -->
+            </div>
+          </template>
+        </draggable>
+        <!-- </div> -->
     </ul>
     <div class="main__down"><img class="main__down__description" src="@/assets/Skeleton.png"><img class="main__down__close" src="@/assets/Vector.png"> </div>
     </div>
     <div class="main__menu"
     v-show="visible"
-     ><img v-on:click="visible=!visible" class="main__menu__close" src="@/assets/Vector.png"
+     ><img @click="visible = !visible" class="main__menu__close" src="@/assets/Vector.png"
      ><MenuDropdown
      /></div>
 </div>
@@ -34,47 +63,113 @@
 
 
 <script>
-import InventoryItems from '@/components/InvetoryItems.vue'
+// import InventoryItems from '@/components/InvetoryItems.vue'
 import MenuDropdown from '@/components/MenuDropdown.vue'
+import draggable from 'vuedraggable'
 export default { 
     components: {
-    InventoryItems,
+    // InventoryItems,
     MenuDropdown,
+    draggable
+},
+computed : {
+    generateColums() {
+      const data = this.items.reduce(
+        (c, p) => {
+          if (c[c.length - 1].length === 5) {
+            c.push([]);
+          }
+          c[c.length - 1].push(JSON.parse(JSON.stringify(p)));
+          return c;
+        },
+        [[]]
+      );
+    //   console.log(data);
+      return data;
+    },
+    getRowsAndColumns() {
+      const rows = 5;
+      const generateRows = new Array(rows).fill(null);
+        //  const generateRows = new Array(rows).fill({}).map((element,inx)=>{
+        //    return {
+        //        itemCounter: inx || 0,
+        //        itemImg: "assets/ItemImage.png",
+        //  }
+        //  })
+      const data = generateRows.reduce((acc, value, index) => {
+        acc = [...acc];
+        acc[index] = [...this.generateColums];
+        return acc;
+      }, []);
+    //   console.log(data);
+      return data;
+    },
 },
     data() {
     return {
-        items: [{itemCounter:4, itemImg:"@/assets/ItemImage.png"},
-        {itemCounter:2,itemImg:"@/assets/ItemImage.png"},
-        {itemCounter:5,itemImg:"@/assets/ItemImage.png"},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},
-        {itemCounter:null,itemImg:" "},],
+        items: [{itemCounter:4, itemImg:"assets/ItemImage.png"},
+        {itemCounter:2,itemImg:"assets/ItemImage1.png"},
+        {itemCounter:5,itemImg:"assets/ItemImage2.png"},
+        {itemCounter:null,itemImg:'assets/Rectangle9.png'},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},
+        {itemCounter:null,itemImg:"assets/Rectangle9.png"},],
         visible:false,
+        drag:false,
     }
+    
     
     
 }}
 </script>
-<style> 
+<style>
+.iteminventory_counter {
+    position: absolute;
+    color: rgba(77, 77, 77, 1);
+    bottom: 0px;
+    right: 0px;
+    width: 16px;
+    height: 16px;
+    border:1px solid rgba(77, 77, 77, 1) ;
+    border-radius: 6px 0 0 0 ;
+}
+.iteminventory {
+    width: 103px;
+    height: 100px;
+    border: 1px solid #4D4D4D;
+    position: relative;
+    align-items: center;
+    background-color:#262626 ;
+    cursor: pointer;
+}
+.iteminventory:hover {
+    background-color: #2F2F2F;
+}
+.iteminventory_Img {
+    left: 27px;
+    position: absolute;
+    top: 27px;
+    
+   
+}
 .main {
     width: 849px;
     height: 660px;

@@ -4,7 +4,7 @@
     <div class="item__inventory_counter">{{ itemCounter }}
     </div>
     <img class="item__inventory_Img"
-    :src="require(itemImg)"
+    :src="require(`@/${itemImg}`)"
      />
     </div>
     </div>
@@ -13,9 +13,8 @@
 <script>
 export default {
     name:'ItemInventory',
-    props:['itemCounter','itemImg',],
-    
-   
+    props:['itemCounter','itemImg'],
+    itemImg:String,
 }
 </script>
 <style>
